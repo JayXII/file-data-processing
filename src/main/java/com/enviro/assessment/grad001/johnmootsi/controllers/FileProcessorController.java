@@ -1,5 +1,7 @@
 package com.enviro.assessment.grad001.johnmootsi.controllers;
 
+import com.enviro.assessment.grad001.johnmootsi.services.EnvironmentalDataService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -8,6 +10,9 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("/api/v1")
 public class FileProcessorController {
+
+    @Autowired
+    private EnvironmentalDataService environmentalDataService;
 
     // Test method
     @GetMapping("/hello")
