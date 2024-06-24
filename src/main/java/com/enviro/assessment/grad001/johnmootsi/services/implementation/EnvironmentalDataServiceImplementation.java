@@ -1,7 +1,15 @@
 package com.enviro.assessment.grad001.johnmootsi.services.implementation;
 
-import com.enviro.assessment.grad001.johnmootsi.entities.EnvironmentalDataEntity;
-import com.enviro.assessment.grad001.johnmootsi.repository.EnvironmentalDataRepository;
+import com.enviro.assessment.grad001.johnmootsi.converters.AirQualityEntityToDTOConverter;
+import com.enviro.assessment.grad001.johnmootsi.converters.DeforestationRatesEntityToDTOConverter;
+import com.enviro.assessment.grad001.johnmootsi.converters.LandUseEntityToDTOConverter;
+import com.enviro.assessment.grad001.johnmootsi.converters.WaterQualityEntityToDTOConverter;
+import com.enviro.assessment.grad001.johnmootsi.dto.*;
+import com.enviro.assessment.grad001.johnmootsi.entities.AirQualityEntity;
+import com.enviro.assessment.grad001.johnmootsi.entities.DeforestationRatesEntity;
+import com.enviro.assessment.grad001.johnmootsi.entities.LandUseEntity;
+import com.enviro.assessment.grad001.johnmootsi.entities.WaterQualityEntity;
+import com.enviro.assessment.grad001.johnmootsi.repository.*;
 import com.enviro.assessment.grad001.johnmootsi.services.EnvironmentalDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +22,14 @@ public class EnvironmentalDataServiceImplementation implements EnvironmentalData
 
     @Autowired
     private EnvironmentalDataRepository environmentalDataRepository;
+    @Autowired
+    private AirQualityRepository airQualityRepository;
+    @Autowired
+    private DeforestationRatesRepository deforestationRatesRepository;
+    @Autowired
+    private LandUseRepository landUseRepository;
+    @Autowired
+    private WaterQualityRepository waterQualityRepository;
 
     @Override
     public String upload(MultipartFile file) {
@@ -21,12 +37,59 @@ public class EnvironmentalDataServiceImplementation implements EnvironmentalData
     }
 
     @Override
-    public EnvironmentalDataEntity getProcessedResultsById(Long id) {
+    public ProcessedResultsDTO getProcessedResultsById(Long id) {
         return null;
     }
 
     @Override
-    public List<EnvironmentalDataEntity> getAllProcessedResults() {
+    public ProcessedResultsDTO getProcessedResultsByName(String name) {
+
+        ProcessedResultsDTO processedResultsDTO = null;
+
+        switch (name.toLowerCase().strip()) {
+            case "air":
+                AirQualityEntityToDTOConverter airQualityEntityToDTOConverter = new AirQualityEntityToDTOConverter();
+                // Find air quality results by name
+                AirQualityEntity airQualityEntity = airQualityRepository.findByName(name);
+                // Convert Entity to DTO
+                AirQualityDTO airQualityDTO = airQualityEntityToDTOConverter.convertAirQualityEntityToDTO(airQualityEntity);
+                // Return processed results
+                processedResultsDTO = airQualityDTO;
+                break;
+            case "deforestation":
+                DeforestationRatesEntityToDTOConverter deforestationRatesEntityToDTOConverter = new DeforestationRatesEntityToDTOConverter();
+                // Find deforestation rates results by name
+                DeforestationRatesEntity deforestationRatesEntity = deforestationRatesRepository.findByName(name);
+                // Convert Entity to DTO
+                DeforestationRatesEntityDTO deforestationRatesEntityDTO = deforestationRatesEntityToDTOConverter.convertDeforestationEntityToDTO(deforestationRatesEntity);
+                // Return processed results
+                processedResultsDTO = deforestationRatesEntityDTO;
+                break;
+            case "land":
+                LandUseEntityToDTOConverter landUseEntityToDTOConverter = new LandUseEntityToDTOConverter();
+                // Find land use results by name
+                LandUseEntity landUseEntity = landUseRepository.findByName(name);
+                // Convert Entity to DTO
+                LandUseDTO landUseDTO = landUseEntityToDTOConverter.convertLandUseEntityToDTO(landUseEntity);
+                // Return processed results
+                processedResultsDTO = landUseDTO;
+                break;
+            case "water":
+                WaterQualityEntityToDTOConverter waterQualityEntityToDTOConverter = new WaterQualityEntityToDTOConverter();
+                // Find water quality results by name
+                WaterQualityEntity waterQualityEntity = waterQualityRepository.findByName(name);
+                // Convert Entity to DTO
+                WaterQualityDTO waterQualityDTO = waterQualityEntityToDTOConverter.convertWaterQualityEntityToDTO(waterQualityEntity);
+                // Return processed results
+                processedResultsDTO = waterQualityDTO;
+                break;
+        }
+
+        return processedResultsDTO;
+    }
+
+    @Override
+    public List<ProcessedResultsDTO> getAllProcessedResults() {
         return List.of();
     }
 }
