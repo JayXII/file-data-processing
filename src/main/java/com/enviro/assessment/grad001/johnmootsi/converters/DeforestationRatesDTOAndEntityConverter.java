@@ -17,7 +17,7 @@ public class DeforestationRatesDTOAndEntityConverter {
         deforestationRatesEntity.setDeforestationRate(deforestationRatesDTO.getDeforestationRate());
         deforestationRatesEntity.setSoilOrganicCarbonRate(deforestationRatesDTO.getSoilOrganicCarbonRate());
         deforestationRatesEntity.setSoilNutrientLevels(deforestationRatesDTO.getSoilNutrientLevels());
-        deforestationRatesEntity.setDate(deforestationRatesDTO.getDate());
+        deforestationRatesEntity.setSamplingDate(deforestationRatesDTO.getSamplingDate());
 
         return deforestationRatesEntity;
 
@@ -34,7 +34,7 @@ public class DeforestationRatesDTOAndEntityConverter {
         deforestationRatesDTO.setDeforestationRate(deforestationRatesEntity.getDeforestationRate());
         deforestationRatesDTO.setSoilOrganicCarbonRate(deforestationRatesEntity.getSoilOrganicCarbonRate());
         deforestationRatesDTO.setSoilNutrientLevels(deforestationRatesEntity.getSoilNutrientLevels());
-        deforestationRatesDTO.setDate(deforestationRatesEntity.getDate());
+        deforestationRatesDTO.setSamplingDate(deforestationRatesEntity.getSamplingDate());
 
         return deforestationRatesDTO;
     }

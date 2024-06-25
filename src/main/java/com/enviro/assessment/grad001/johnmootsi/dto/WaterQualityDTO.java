@@ -12,6 +12,6 @@ public class WaterQualityDTO extends ProcessedResultsDTO {
     private String name;
     private String description;
     private String parameter;
-    private String value;
-    private Date date;
+    private String sampleValue;
+    private Date samplingDate;
 }

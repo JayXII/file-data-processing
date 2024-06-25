@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Date;
-import java.util.List;
 import java.util.Scanner;
 
 @Service
@@ -52,7 +51,7 @@ public class EnvironmentalDataServiceImplementation implements EnvironmentalData
         AirQualityDTO airQualityDTO = new AirQualityDTO();
         airQualityDTO.setName(scanner.nextLine().split(":")[1]);
         airQualityDTO.setDescription(scanner.nextLine().split(":")[1]);
-        airQualityDTO.setDate(new Date(scanner.nextLine().split(":")[1]));
+        airQualityDTO.setMeasurementDate(new Date(scanner.nextLine().split(":")[1]));
         airQualityDTO.setPollutant(scanner.nextLine().split(":")[1]);
         airQualityDTO.setConcentration(scanner.nextLine().split(":")[1]);
         scanner.nextLine();
@@ -64,9 +63,9 @@ public class EnvironmentalDataServiceImplementation implements EnvironmentalData
         WaterQualityDTO waterQualityDTO = new WaterQualityDTO();
         waterQualityDTO.setName(scanner.nextLine().split(":")[1]);
         waterQualityDTO.setDescription(scanner.nextLine().split(":")[1]);
-        waterQualityDTO.setDate(new Date(scanner.nextLine().split(":")[1]));
+        waterQualityDTO.setSamplingDate(new Date(scanner.nextLine().split(":")[1]));
         waterQualityDTO.setParameter(scanner.nextLine().split(":")[1]);
-        waterQualityDTO.setValue(scanner.nextLine().split(":")[1]);
+        waterQualityDTO.setSampleValue(scanner.nextLine().split(":")[1]);
         scanner.nextLine();
 
         // Convert and save the entity to database
@@ -78,7 +77,7 @@ public class EnvironmentalDataServiceImplementation implements EnvironmentalData
         landUseDTO.setDescription(scanner.nextLine().split(":")[1]);
         landUseDTO.setLocation(scanner.nextLine().split(":")[1]);
         landUseDTO.setLandUseType(scanner.nextLine().split(":")[1]);
-        landUseDTO.setDate(new Date(scanner.nextLine().split(":")[1]));
+        landUseDTO.setSamplingDate(new Date(scanner.nextLine().split(":")[1]));
         scanner.nextLine();
 
         // Convert and save the entity to database
@@ -89,7 +88,7 @@ public class EnvironmentalDataServiceImplementation implements EnvironmentalData
         deforestationRatesDTO.setName(scanner.nextLine().split(":")[1]);
         deforestationRatesDTO.setDescription(scanner.nextLine().split(":")[1]);
         deforestationRatesDTO.setRegion(scanner.nextLine().split(":")[1]);
-        deforestationRatesDTO.setDate(new Date(scanner.nextLine().split(":")[1]));
+        deforestationRatesDTO.setSamplingDate(new Date(scanner.nextLine().split(":")[1]));
         deforestationRatesDTO.setDeforestationRate(scanner.nextLine().split(":")[1]);
         deforestationRatesDTO.setSoilOrganicCarbonRate(scanner.nextLine().split(":")[1]);
         deforestationRatesDTO.setSoilNutrientLevels(scanner.nextLine().split(":")[1]);

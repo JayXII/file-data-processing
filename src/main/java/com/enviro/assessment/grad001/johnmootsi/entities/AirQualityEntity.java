@@ -26,5 +26,5 @@ public class AirQualityEntity extends ProcessedResultsEntity {
     @Column(name = "CONCENTRATION")
     private String concentration;
     @Column(name = "MEASUREMENT_DATE")
-    private Date date;
+    private Date measurementDate;
 }

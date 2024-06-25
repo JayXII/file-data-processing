@@ -13,7 +13,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 public class WaterQualityEntity extends ProcessedResultsEntity {
-    @Id()
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private Long id;
@@ -23,8 +23,8 @@ public class WaterQualityEntity extends ProcessedResultsEntity {
     private String description;
     @Column(name = "PARAMETER")
     private String parameter;
-    @Column(name = "VALUE")
-    private String value;
+    @Column(name = "SAMPLE_VALUE")
+    private String sampleValue;
     @Column(name = "SAMPLING_DATE")
-    private Date date;
+    private Date samplingDate;
 }

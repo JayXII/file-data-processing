@@ -14,8 +14,8 @@ public class WaterQualityDTOAndEntityConverter {
         waterQualityEntity.setName(waterQualityDTO.getName());
         waterQualityEntity.setDescription(waterQualityDTO.getDescription());
         waterQualityEntity.setParameter(waterQualityDTO.getParameter());
-        waterQualityEntity.setValue(waterQualityDTO.getValue());
-        waterQualityEntity.setDate(waterQualityDTO.getDate());
+        waterQualityEntity.setSampleValue(waterQualityDTO.getSampleValue());
+//        waterQualityEntity.setSamplingDate(waterQualityDTO.getDate());
 
         return waterQualityEntity;
     }
@@ -28,8 +28,8 @@ public class WaterQualityDTOAndEntityConverter {
         waterQualityDTO.setName(entity.getName());
         waterQualityDTO.setDescription(entity.getDescription());
         waterQualityDTO.setParameter(waterQualityDTO.getParameter());
-        waterQualityDTO.setValue(waterQualityDTO.getValue());
-        waterQualityDTO.setDate(waterQualityDTO.getDate());
+        waterQualityDTO.setSampleValue(waterQualityDTO.getSampleValue());
+//        waterQualityDTO.setDate(waterQualityDTO.getDate());
 
         return waterQualityDTO;
     }
