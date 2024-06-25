@@ -13,5 +13,5 @@ public class AirQualityDTO extends ProcessedResultsDTO {
     private String description;
     private String pollutant;
     private String concentration;
-    private Date date;
+    private Date measurementDate;
 }

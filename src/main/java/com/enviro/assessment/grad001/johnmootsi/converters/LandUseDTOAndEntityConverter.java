@@ -15,7 +15,7 @@ public class LandUseDTOAndEntityConverter {
         landUseEntity.setDescription(landUseDTO.getDescription());
         landUseEntity.setLocation(landUseDTO.getLocation());
         landUseEntity.setLandUseType(landUseDTO.getLandUseType());
-        landUseEntity.setDate(landUseDTO.getDate());
+        landUseEntity.setSamplingDate(landUseDTO.getSamplingDate());
 
         return landUseEntity;
     }
@@ -29,7 +29,7 @@ public class LandUseDTOAndEntityConverter {
         landUseDTO.setDescription(landUseEntity.getDescription());
         landUseDTO.setLocation(landUseEntity.getLocation());
         landUseDTO.setLandUseType(landUseEntity.getLandUseType());
-        landUseDTO.setDate(landUseEntity.getDate());
+        landUseDTO.setSamplingDate(landUseEntity.getSamplingDate());
 
         return landUseDTO;
     }

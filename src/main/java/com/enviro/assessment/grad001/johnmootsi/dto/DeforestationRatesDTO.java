@@ -15,5 +15,5 @@ public class DeforestationRatesDTO extends ProcessedResultsDTO {
     private String deforestationRate;
     private String soilOrganicCarbonRate;
     private String soilNutrientLevels;
-    private Date date;
+    private Date samplingDate;
 }

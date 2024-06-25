@@ -15,7 +15,7 @@ public class AirQualityDTOAndEntityConverter {
         airQualityEntity.setDescription(airQualityDTO.getDescription());
         airQualityEntity.setPollutant(airQualityDTO.getPollutant());
         airQualityEntity.setConcentration(airQualityDTO.getConcentration());
-        airQualityEntity.setDate(airQualityDTO.getDate());
+        airQualityEntity.setMeasurementDate(airQualityDTO.getMeasurementDate());
 
         return airQualityEntity;
     }
@@ -29,7 +29,7 @@ public class AirQualityDTOAndEntityConverter {
         airQualityDTO.setDescription(airQualityEntity.getDescription());
         airQualityDTO.setPollutant(airQualityEntity.getPollutant());
         airQualityDTO.setConcentration(airQualityEntity.getConcentration());
-        airQualityDTO.setDate(airQualityEntity.getDate());
+        airQualityDTO.setMeasurementDate(airQualityEntity.getMeasurementDate());
 
         return airQualityDTO;
     }

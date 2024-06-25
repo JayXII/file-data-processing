@@ -30,5 +30,5 @@ public class DeforestationRatesEntity extends ProcessedResultsEntity {
     @Column(name = "SOIL_NUTRIENT_LEVELS")
     private String soilNutrientLevels;
     @Column(name = "SAMPLING_DATE")
-    private Date date;
+    private Date samplingDate;
 }

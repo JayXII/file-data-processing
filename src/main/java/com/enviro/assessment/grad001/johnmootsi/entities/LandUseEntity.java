@@ -27,5 +27,5 @@ public class LandUseEntity extends ProcessedResultsEntity {
     @Column(name = "LAND_USE_TYPE")
     private String landUseType;
     @Column(name = "SAMPLING_DATE")
-    private Date date;
+    private Date samplingDate;
 }

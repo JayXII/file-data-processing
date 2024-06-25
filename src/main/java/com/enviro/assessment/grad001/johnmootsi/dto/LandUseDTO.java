@@ -13,5 +13,5 @@ public class LandUseDTO extends ProcessedResultsDTO {
     private String description;
     private String location;
     private String landUseType;
-    private Date date;
+    private Date samplingDate;
 }
