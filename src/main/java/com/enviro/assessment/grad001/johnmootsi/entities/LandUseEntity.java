@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.util.Date;
 
 @Entity
-@Table(name = "LAND USE")
+@Table(name = "LAND_USE")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,8 +24,8 @@ public class LandUseEntity extends ProcessedResultsEntity {
     private String description;
     @Column(name = "LOCATION")
     private String location;
-    @Column(name = "LAND USE TYPE")
+    @Column(name = "LAND_USE_TYPE")
     private String landUseType;
-    @Column(name = "DATE")
+    @Column(name = "SAMPLING_DATE")
     private Date date;
 }
