@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class DeforestationRatesEntityDTO extends ProcessedResultsDTO {
+public class DeforestationRatesDTO extends ProcessedResultsDTO {
     private Long id;
     private String name;
     private String description;

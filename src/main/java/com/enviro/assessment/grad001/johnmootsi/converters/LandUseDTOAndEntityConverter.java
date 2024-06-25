@@ -5,9 +5,22 @@ import com.enviro.assessment.grad001.johnmootsi.entities.LandUseEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LandUseEntityToDTOConverter {
+public class LandUseDTOAndEntityConverter {
 
-    public LandUseDTO convertLandUseEntityToDTO(LandUseEntity landUseEntity) {
+    public LandUseEntity convertToEntity(LandUseDTO landUseDTO) {
+
+        LandUseEntity landUseEntity = new LandUseEntity();
+
+        landUseEntity.setName(landUseDTO.getName());
+        landUseEntity.setDescription(landUseDTO.getDescription());
+        landUseEntity.setLocation(landUseDTO.getLocation());
+        landUseEntity.setLandUseType(landUseDTO.getLandUseType());
+        landUseEntity.setDate(landUseDTO.getDate());
+
+        return landUseEntity;
+    }
+
+    public LandUseDTO convertToDTO(LandUseEntity landUseEntity) {
 
         LandUseDTO landUseDTO = new LandUseDTO();
 
