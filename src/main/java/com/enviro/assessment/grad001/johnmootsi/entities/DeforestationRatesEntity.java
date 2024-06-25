@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.util.Date;
 
 @Entity
-@Table(name = "DEFORESTATION RATES")
+@Table(name = "DEFORESTATION_RATES")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,12 +23,12 @@ public class DeforestationRatesEntity extends ProcessedResultsEntity {
     private String description;
     @Column(name = "REGION")
     private String region;
-    @Column(name = "DEFORESTATION RATE")
+    @Column(name = "DEFORESTATION_RATE")
     private String deforestationRate;
-    @Column(name = "SOIL ORGANIC CARBON RATE")
+    @Column(name = "SOIL_ORGANIC_CARBON_RATE")
     private String soilOrganicCarbonRate;
-    @Column(name = "SOIL NUTRIENT LEVELS")
+    @Column(name = "SOIL_NUTRIENT_LEVELS")
     private String soilNutrientLevels;
-    @Column(name = "DATE")
+    @Column(name = "SAMPLING_DATE")
     private Date date;
 }

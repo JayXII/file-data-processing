@@ -1,0 +1,26 @@
+Dataset Name: Annual Air Quality Report for City Y
+Description: This dataset compiles yearly measurements of air pollutants (PM2.5, NO2, O3) for a city.
+Measurement Date: 06/25/2024
+Pollutant: (PM2.5, NO2, O3)
+Concentration: (µg/m³)
+
+Dataset Name: Water Quality Report for City Y
+Description: This dataset compiles yearly measurements of water quality parameters (pH, dissolved oxygen, nitrate levels) for a city.
+Sampling Date: 06/25/2024
+Parameter: (pH, Dissolved Oxygen, Nitrate)
+Value: 30%
+
+Dataset Name: Land Use and Land Cover Map for Country Z
+Description: This dataset provides a classification of the land use and land cover types across a country, including forests, urban areas, agricultural lands, and more.
+Location: (GPS Coordinates)
+Land Use Type: (Forest, Urban, Agriculture, etc.)
+Sampling Date: 06/25/2024
+
+Dataset Name: Deforestation Rates and Soil Quality Across Regions
+Description: This dataset tracks deforestation rates and soil quality measurements across various regions, aiming to monitor the impact of human activities on ecosystems.
+Region: Province
+Year: 2024
+Deforestation Rate: 50%
+Soil Organic Carbon Rate: 3.5kg/m²
+Soil Nutrient Levels: (N, P, K)
+

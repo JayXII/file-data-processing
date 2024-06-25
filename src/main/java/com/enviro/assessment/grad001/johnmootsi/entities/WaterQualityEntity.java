@@ -8,13 +8,12 @@ import lombok.Setter;
 import java.util.Date;
 
 @Entity
-@Table(name = "WATER QUALITY")
+@Table(name = "WATER_QUALITY")
 @Getter
 @Setter
 @NoArgsConstructor
 public class WaterQualityEntity extends ProcessedResultsEntity {
-
-    @Id
+    @Id()
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private Long id;
@@ -26,6 +25,6 @@ public class WaterQualityEntity extends ProcessedResultsEntity {
     private String parameter;
     @Column(name = "VALUE")
     private String value;
-    @Column(name = "DATE")
+    @Column(name = "SAMPLING_DATE")
     private Date date;
 }

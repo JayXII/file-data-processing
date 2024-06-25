@@ -6,8 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+
 @Entity
-@Table(name = "AIR QUALITY")
+@Table(name = "AIR_QUALITY")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,6 +25,6 @@ public class AirQualityEntity extends ProcessedResultsEntity {
     private String pollutant;
     @Column(name = "CONCENTRATION")
     private String concentration;
-    @Column(name = "DATE")
+    @Column(name = "MEASUREMENT_DATE")
     private Date date;
 }

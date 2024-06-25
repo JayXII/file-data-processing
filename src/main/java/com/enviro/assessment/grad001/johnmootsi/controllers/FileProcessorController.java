@@ -4,10 +4,12 @@ import com.enviro.assessment.grad001.johnmootsi.dto.*;
 import com.enviro.assessment.grad001.johnmootsi.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 
@@ -34,10 +36,11 @@ public class FileProcessorController {
     }
 
     // File upload endpoint
-    @PostMapping("/upload")
-    public ResponseEntity<String> processFile(@RequestParam("file") MultipartFile file) {
-        environmentalDataService.upload(file);
-        return ResponseEntity.ok("Upload successful");
+    @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> processFile(@RequestParam("file") MultipartFile file) throws FileNotFoundException {
+        String message = environmentalDataService.upload(file);
+        ResponseEntity<String> response = new ResponseEntity<>(message, HttpStatus.OK);
+        return response;
     }
 
     // Get Deforestation Rates results by id endpoint
@@ -136,23 +139,4 @@ public class FileProcessorController {
         return airQualityDTOResponseEntity;
     }
 
-//    // Get results by id endpoint
-//    @GetMapping("/results/{id}")
-//    public ResponseEntity<String> getProcessedResultsById(@PathVariable Long id) {
-//        return ResponseEntity.ok("Hello, ");
-//    }
-//
-//    // Get results by name endpoint
-//    @GetMapping("/results/{name}")
-//    public ResponseEntity<ProcessedResultsDTO> getProcessedResultsByName(@PathVariable String name) {
-//        ProcessedResultsDTO processedResultsDTO = environmentalDataService.getProcessedResultsByName(name);
-//        ResponseEntity<ProcessedResultsDTO> processedResults = new ResponseEntity<>(processedResultsDTO, HttpStatus.OK);
-//        return processedResults;
-//    }
-//
-//    // Get all results
-//    @GetMapping("/results")
-//    public ResponseEntity<String> getAllProcessedResults() {
-//        return ResponseEntity.ok("Hello, ");
-//    }
 }
