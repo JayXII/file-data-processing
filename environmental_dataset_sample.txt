@@ -19,8 +19,7 @@ Sampling Date: 06/25/2024
 Dataset Name: Deforestation Rates and Soil Quality Across Regions
 Description: This dataset tracks deforestation rates and soil quality measurements across various regions, aiming to monitor the impact of human activities on ecosystems.
 Region: Province
-Year: 2024
+Sampling Date: 06/25/2024
 Deforestation Rate: 50%
 Soil Organic Carbon Rate: 3.5kg/m²
 Soil Nutrient Levels: (N, P, K)
-
