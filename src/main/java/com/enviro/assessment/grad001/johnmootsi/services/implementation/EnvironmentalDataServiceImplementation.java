@@ -24,8 +24,6 @@ import java.util.Scanner;
 public class EnvironmentalDataServiceImplementation implements EnvironmentalDataService {
 
     @Autowired
-    private EnvironmentalDataRepository environmentalDataRepository;
-    @Autowired
     private AirQualityRepository airQualityRepository;
     @Autowired
     private DeforestationRatesRepository deforestationRatesRepository;
@@ -51,26 +49,28 @@ public class EnvironmentalDataServiceImplementation implements EnvironmentalData
         AirQualityDTO airQualityDTO = new AirQualityDTO();
         airQualityDTO.setName(scanner.nextLine().split(":")[1]);
         airQualityDTO.setDescription(scanner.nextLine().split(":")[1]);
-        airQualityDTO.setMeasurementDate(new Date(scanner.nextLine().split(":")[1]));
+        airQualityDTO.setMeasurementDate(new Date(scanner.nextLine().split(":")[1].strip()));
         airQualityDTO.setPollutant(scanner.nextLine().split(":")[1]);
         airQualityDTO.setConcentration(scanner.nextLine().split(":")[1]);
-        scanner.nextLine();
 
         // Convert and save the entity to database
         AirQualityEntity airQualityEntity = airQualityDTOAndEntityConverter.convertToEntity(airQualityDTO);
         airQualityRepository.save(airQualityEntity);
 
+        scanner.nextLine();
+
         WaterQualityDTO waterQualityDTO = new WaterQualityDTO();
         waterQualityDTO.setName(scanner.nextLine().split(":")[1]);
         waterQualityDTO.setDescription(scanner.nextLine().split(":")[1]);
-        waterQualityDTO.setSamplingDate(new Date(scanner.nextLine().split(":")[1]));
+        waterQualityDTO.setSamplingDate(new Date(scanner.nextLine().split(":")[1].strip()));
         waterQualityDTO.setParameter(scanner.nextLine().split(":")[1]);
         waterQualityDTO.setSampleValue(scanner.nextLine().split(":")[1]);
-        scanner.nextLine();
 
         // Convert and save the entity to database
         WaterQualityEntity waterQualityEntity = waterQualityDTOAndEntityConverter.convertToEntity(waterQualityDTO);
         waterQualityRepository.save(waterQualityEntity);
+
+        scanner.nextLine();
 
         LandUseDTO landUseDTO = new LandUseDTO();
         landUseDTO.setName(scanner.nextLine().split(":")[1]);
@@ -78,17 +78,18 @@ public class EnvironmentalDataServiceImplementation implements EnvironmentalData
         landUseDTO.setLocation(scanner.nextLine().split(":")[1]);
         landUseDTO.setLandUseType(scanner.nextLine().split(":")[1]);
         landUseDTO.setSamplingDate(new Date(scanner.nextLine().split(":")[1]));
-        scanner.nextLine();
 
         // Convert and save the entity to database
         LandUseEntity landUseEntity = landUseDTOAndEntityConverter.convertToEntity(landUseDTO);
         landUseRepository.save(landUseEntity);
 
+        scanner.nextLine();
+
         DeforestationRatesDTO deforestationRatesDTO = new DeforestationRatesDTO();
         deforestationRatesDTO.setName(scanner.nextLine().split(":")[1]);
         deforestationRatesDTO.setDescription(scanner.nextLine().split(":")[1]);
         deforestationRatesDTO.setRegion(scanner.nextLine().split(":")[1]);
-        deforestationRatesDTO.setSamplingDate(new Date(scanner.nextLine().split(":")[1]));
+        deforestationRatesDTO.setSamplingDate(new Date(scanner.nextLine().split(":")[1].strip()));
         deforestationRatesDTO.setDeforestationRate(scanner.nextLine().split(":")[1]);
         deforestationRatesDTO.setSoilOrganicCarbonRate(scanner.nextLine().split(":")[1]);
         deforestationRatesDTO.setSoilNutrientLevels(scanner.nextLine().split(":")[1]);
@@ -96,6 +97,8 @@ public class EnvironmentalDataServiceImplementation implements EnvironmentalData
         // Convert and save the entity to database
         DeforestationRatesEntity deforestationRatesEntity = deforestationRatesDTOAndEntityConverter.convertToEntity(deforestationRatesDTO);
         deforestationRatesRepository.save(deforestationRatesEntity);
+
+        scanner.close();
 
         return "Upload successful";
     }

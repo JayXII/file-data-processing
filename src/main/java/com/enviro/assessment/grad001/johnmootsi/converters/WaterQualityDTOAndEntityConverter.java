@@ -15,21 +15,21 @@ public class WaterQualityDTOAndEntityConverter {
         waterQualityEntity.setDescription(waterQualityDTO.getDescription());
         waterQualityEntity.setParameter(waterQualityDTO.getParameter());
         waterQualityEntity.setSampleValue(waterQualityDTO.getSampleValue());
-//        waterQualityEntity.setSamplingDate(waterQualityDTO.getDate());
+        waterQualityEntity.setSamplingDate(waterQualityDTO.getSamplingDate());
 
         return waterQualityEntity;
     }
 
-    public WaterQualityDTO convertToDTO(WaterQualityEntity entity) {
+    public WaterQualityDTO convertToDTO(WaterQualityEntity waterQualityEntity) {
 
         WaterQualityDTO waterQualityDTO = new WaterQualityDTO();
 
-        waterQualityDTO.setId(entity.getId());
-        waterQualityDTO.setName(entity.getName());
-        waterQualityDTO.setDescription(entity.getDescription());
-        waterQualityDTO.setParameter(waterQualityDTO.getParameter());
-        waterQualityDTO.setSampleValue(waterQualityDTO.getSampleValue());
-//        waterQualityDTO.setDate(waterQualityDTO.getDate());
+        waterQualityDTO.setId(waterQualityEntity.getId());
+        waterQualityDTO.setName(waterQualityEntity.getName());
+        waterQualityDTO.setDescription(waterQualityEntity.getDescription());
+        waterQualityDTO.setParameter(waterQualityEntity.getParameter());
+        waterQualityDTO.setSampleValue(waterQualityEntity.getSampleValue());
+        waterQualityDTO.setSamplingDate(waterQualityEntity.getSamplingDate());
 
         return waterQualityDTO;
     }

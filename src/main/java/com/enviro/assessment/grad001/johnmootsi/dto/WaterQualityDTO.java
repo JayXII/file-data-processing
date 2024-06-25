@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class WaterQualityDTO extends ProcessedResultsDTO {
+public class WaterQualityDTO {
     private Long id;
     private String name;
     private String description;

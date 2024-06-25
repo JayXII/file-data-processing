@@ -12,7 +12,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-public class LandUseEntity extends ProcessedResultsEntity {
+public class LandUseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
