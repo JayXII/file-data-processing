@@ -5,9 +5,22 @@ import com.enviro.assessment.grad001.johnmootsi.entities.AirQualityEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AirQualityEntityToDTOConverter {
+public class AirQualityDTOAndEntityConverter {
 
-    public AirQualityDTO convertAirQualityEntityToDTO(AirQualityEntity airQualityEntity) {
+    public AirQualityEntity convertToEntity(AirQualityDTO airQualityDTO) {
+
+        AirQualityEntity airQualityEntity = new AirQualityEntity();
+
+        airQualityEntity.setName(airQualityDTO.getName());
+        airQualityEntity.setDescription(airQualityDTO.getDescription());
+        airQualityEntity.setPollutant(airQualityDTO.getPollutant());
+        airQualityEntity.setConcentration(airQualityDTO.getConcentration());
+        airQualityEntity.setDate(airQualityDTO.getDate());
+
+        return airQualityEntity;
+    }
+
+    public AirQualityDTO convertToDTO(AirQualityEntity airQualityEntity) {
 
         AirQualityDTO airQualityDTO = new AirQualityDTO();
 

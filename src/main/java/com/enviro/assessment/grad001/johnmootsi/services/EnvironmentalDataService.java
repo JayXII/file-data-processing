@@ -6,8 +6,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 public interface EnvironmentalDataService {
-    public String upload(MultipartFile file);
-    public ProcessedResultsDTO getProcessedResultsById(Long id);
-    public ProcessedResultsDTO getProcessedResultsByName(String name);
-    public List<ProcessedResultsDTO> getAllProcessedResults();
+    String upload(MultipartFile file);
+    ProcessedResultsDTO getProcessedResultsById(Long id);
+    ProcessedResultsDTO getProcessedResultsByName(String name);
+    List<ProcessedResultsDTO> getAllProcessedResults();
 }
