@@ -52,7 +52,7 @@ public class FileProcessorController {
     }
 
     // Get Deforestation Rates results by name endpoint
-    @GetMapping("/results/deforestation/{name}")
+    @GetMapping("/results/deforestation/name/{name}")
     public ResponseEntity<DeforestationRatesDTO> getDeforestationRatesResultsByName(@PathVariable String name) {
         DeforestationRatesDTO deforestationRatesDTO = deforestationRatesService.findDeforestationRatesByName(name);
         ResponseEntity<DeforestationRatesDTO> deforestationRatesDTOResponseEntity = new ResponseEntity<>(deforestationRatesDTO, HttpStatus.OK);
@@ -76,7 +76,7 @@ public class FileProcessorController {
     }
 
     // Get land use results by name endpoint
-    @GetMapping("/results/land/{name}")
+    @GetMapping("/results/land/name/{name}")
     public ResponseEntity<LandUseDTO> getLandUseResultsByName(@PathVariable String name) {
         LandUseDTO landUseDTO = landUseService.findLandUseByName(name);
         ResponseEntity<LandUseDTO> landUseDTOResponseEntity = new ResponseEntity<>(landUseDTO, HttpStatus.OK);
@@ -100,7 +100,7 @@ public class FileProcessorController {
     }
 
     // Get water quality results by name endpoint
-    @GetMapping("/results/water/{name}")
+    @GetMapping("/results/water/name/{name}")
     public ResponseEntity<WaterQualityDTO> getWaterQualityResultsByName(@PathVariable String name) {
         WaterQualityDTO waterQualityDTO = waterQualityService.findWaterQualityByName(name);
         ResponseEntity<WaterQualityDTO> waterQualityDTOResponseEntity = new ResponseEntity<>(waterQualityDTO, HttpStatus.OK);
@@ -124,7 +124,7 @@ public class FileProcessorController {
     }
 
     // Get air quality results by name endpoint
-    @GetMapping("/results/air/{name}")
+    @GetMapping("/results/air/name/{name}")
     public ResponseEntity<AirQualityDTO> getAirQualityResultsByName(@PathVariable String name) {
         AirQualityDTO airQualityDTO = airQualityService.findAirQualityByName(name);
         ResponseEntity<AirQualityDTO> airQualityDTOResponseEntity = new ResponseEntity<>(airQualityDTO, HttpStatus.OK);

@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class LandUseDTO extends ProcessedResultsDTO {
+public class LandUseDTO {
     private Long id;
     private String name;
     private String description;

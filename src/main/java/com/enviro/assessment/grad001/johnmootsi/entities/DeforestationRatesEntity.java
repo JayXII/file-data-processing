@@ -12,12 +12,12 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-public class DeforestationRatesEntity extends ProcessedResultsEntity {
+public class DeforestationRatesEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private Long id;
-    @Column(name = "NAME", nullable = false, length = 50)
+    @Column(name = "NAME", nullable = false, length = 55)
     private String name;
     @Column(name = "DESCRIPTION")
     private String description;
