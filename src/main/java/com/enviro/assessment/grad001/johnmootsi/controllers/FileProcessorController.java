@@ -53,9 +53,9 @@ public class FileProcessorController {
 
     // Get Deforestation Rates results by name endpoint
     @GetMapping("/results/deforestation/name/{name}")
-    public ResponseEntity<DeforestationRatesDTO> getDeforestationRatesResultsByName(@PathVariable String name) {
-        DeforestationRatesDTO deforestationRatesDTO = deforestationRatesService.findDeforestationRatesByName(name);
-        ResponseEntity<DeforestationRatesDTO> deforestationRatesDTOResponseEntity = new ResponseEntity<>(deforestationRatesDTO, HttpStatus.OK);
+    public ResponseEntity<List<DeforestationRatesDTO>> getDeforestationRatesResultsByName(@PathVariable String name) {
+        List<DeforestationRatesDTO> deforestationRatesDTOS = deforestationRatesService.findDeforestationRatesByName(name);
+        ResponseEntity<List<DeforestationRatesDTO>> deforestationRatesDTOResponseEntity = new ResponseEntity<>(deforestationRatesDTOS, HttpStatus.OK);
         return deforestationRatesDTOResponseEntity;
     }
 
@@ -77,9 +77,9 @@ public class FileProcessorController {
 
     // Get land use results by name endpoint
     @GetMapping("/results/land/name/{name}")
-    public ResponseEntity<LandUseDTO> getLandUseResultsByName(@PathVariable String name) {
-        LandUseDTO landUseDTO = landUseService.findLandUseByName(name);
-        ResponseEntity<LandUseDTO> landUseDTOResponseEntity = new ResponseEntity<>(landUseDTO, HttpStatus.OK);
+    public ResponseEntity<List<LandUseDTO>> getLandUseResultsByName(@PathVariable String name) {
+        List<LandUseDTO> landUseDTOS = landUseService.findLandUseByName(name);
+        ResponseEntity<List<LandUseDTO>> landUseDTOResponseEntity = new ResponseEntity<>(landUseDTOS, HttpStatus.OK);
         return landUseDTOResponseEntity;
     }
 
@@ -101,9 +101,9 @@ public class FileProcessorController {
 
     // Get water quality results by name endpoint
     @GetMapping("/results/water/name/{name}")
-    public ResponseEntity<WaterQualityDTO> getWaterQualityResultsByName(@PathVariable String name) {
-        WaterQualityDTO waterQualityDTO = waterQualityService.findWaterQualityByName(name);
-        ResponseEntity<WaterQualityDTO> waterQualityDTOResponseEntity = new ResponseEntity<>(waterQualityDTO, HttpStatus.OK);
+    public ResponseEntity<List<WaterQualityDTO>> getWaterQualityResultsByName(@PathVariable String name) {
+        List<WaterQualityDTO> waterQualityDTOS = waterQualityService.findWaterQualityByName(name);
+        ResponseEntity<List<WaterQualityDTO>> waterQualityDTOResponseEntity = new ResponseEntity<>(waterQualityDTOS, HttpStatus.OK);
         return waterQualityDTOResponseEntity;
     }
 
@@ -125,9 +125,9 @@ public class FileProcessorController {
 
     // Get air quality results by name endpoint
     @GetMapping("/results/air/name/{name}")
-    public ResponseEntity<AirQualityDTO> getAirQualityResultsByName(@PathVariable String name) {
-        AirQualityDTO airQualityDTO = airQualityService.findAirQualityByName(name);
-        ResponseEntity<AirQualityDTO> airQualityDTOResponseEntity = new ResponseEntity<>(airQualityDTO, HttpStatus.OK);
+    public ResponseEntity<List<AirQualityDTO>> getAirQualityResultsByName(@PathVariable String name) {
+        List<AirQualityDTO> airQualityDTO = airQualityService.findAirQualityByName(name);
+        ResponseEntity<List<AirQualityDTO>> airQualityDTOResponseEntity = new ResponseEntity<>(airQualityDTO, HttpStatus.OK);
         return airQualityDTOResponseEntity;
     }
 
