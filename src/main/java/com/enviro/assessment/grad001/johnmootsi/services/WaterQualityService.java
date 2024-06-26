@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface WaterQualityService {
     WaterQualityDTO findWaterQualityById(Long id);
-    WaterQualityDTO findWaterQualityByName(String name);
+    List<WaterQualityDTO> findWaterQualityByName(String name);
     List<WaterQualityDTO> findAllWaterQuality();
     void save(WaterQualityDTO waterQualityDTO);
 }

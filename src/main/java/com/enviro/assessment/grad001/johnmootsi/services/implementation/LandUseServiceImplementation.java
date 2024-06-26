@@ -34,13 +34,20 @@ public class LandUseServiceImplementation implements LandUseService {
     }
 
     @Override
-    public LandUseDTO findLandUseByName(String name) {
+    public List<LandUseDTO> findLandUseByName(String name) {
         // Find land use results by name
-        LandUseEntity landUseEntity = landUseRepository.findByName(name);
-        // Convert Entity to DTO
-        LandUseDTO landUseDTO = landUseDTOAndEntityConverter.convertToDTO(landUseEntity);
+        List<LandUseEntity> landUseEntities = landUseRepository.findByNameContainingIgnoreCase(name);
+        // Convert Entity to DTO by iterating over land use entity list
+        List<LandUseDTO> landUseDTOS = new ArrayList<>();
+
+        for (LandUseEntity landUseEntity : landUseEntities) {
+            // Convert Entity to DTO
+            LandUseDTO landUseDTO = landUseDTOAndEntityConverter.convertToDTO(landUseEntity);
+            // Add to the DTO list
+            landUseDTOS.add(landUseDTO);
+        }
         // Return processed results
-        return landUseDTO;
+        return landUseDTOS;
     }
 
     @Override

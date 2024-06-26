@@ -36,13 +36,20 @@ public class AirQualityServiceImplementation implements AirQualityService {
     }
 
     @Override
-    public AirQualityDTO findAirQualityByName(String name) {
+    public List<AirQualityDTO> findAirQualityByName(String name) {
         // Find air quality results by name
-        AirQualityEntity airQualityEntity = airQualityRepository.findByName(name);
-        // Convert Entity to DTO
-        AirQualityDTO airQualityDTO = airQualityDTOAndEntityConverter.convertToDTO(airQualityEntity);
+        List<AirQualityEntity> airQualityEntities = airQualityRepository.findByNameContainingIgnoreCase(name);
+        // Convert Entity to DTO by iterating over air quality entity list
+        List<AirQualityDTO> airQualityDTOS = new ArrayList<>();
+
+        for (AirQualityEntity airQualityEntity : airQualityEntities) {
+            // Convert Entity to DTO
+            AirQualityDTO airQualityDTO = airQualityDTOAndEntityConverter.convertToDTO(airQualityEntity);
+            // Add to the DTO list
+            airQualityDTOS.add(airQualityDTO);
+        }
         // Return processed results
-        return airQualityDTO;
+        return airQualityDTOS;
     }
 
     @Override

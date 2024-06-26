@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface DeforestationRatesService {
     DeforestationRatesDTO findDeforestationRatesById(Long id);
-    DeforestationRatesDTO findDeforestationRatesByName(String name);
+    List<DeforestationRatesDTO> findDeforestationRatesByName(String name);
     List<DeforestationRatesDTO> findAllDeforestationRates();
     void save(DeforestationRatesDTO deforestationRatesDTO);
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AirQualityService {
     AirQualityDTO findAirQualityById(Long id);
-    AirQualityDTO findAirQualityByName(String name);
+    List<AirQualityDTO> findAirQualityByName(String name);
     List<AirQualityDTO> findAllAirQuality();
     void save(AirQualityDTO airQualityDTO);
 }
