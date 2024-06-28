@@ -85,7 +85,7 @@
 			<resource>
 				<directory>src/main/resources</directory>
 				<includes>
-					<include>**/*.yaml</include>
+<!--					<include>**/*.yaml</include>-->
 				</includes>
 			</resource>
 		</resources>
