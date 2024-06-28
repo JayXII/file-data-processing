@@ -11,11 +11,11 @@ info:
     url: License URL
   version: 1.0.0
 servers:
-  - url: http://localhost:8080/api/v1
+  - url: http://localhost:8080
     description: Local server (default)
 
 paths:
-  /hello:
+  /api/v1/hello:
     get:
       summary: Test endpoint to greet the world
       operationId: helloWorld
@@ -28,10 +28,10 @@ paths:
                 type: string
                 example: Oh hai, world!
 
-  /hello/{name}:
+  /api/v1/hello/{name}:
     get:
       summary: Test endpoint to greet a specific person
-      operationId: helloWithName
+      operationId: helloName
       parameters:
         - name: name
           in: path
@@ -48,7 +48,7 @@ paths:
                 type: string
                 example: Oh hai, John!
 
-  /upload:
+  /api/v1/upload:
     post:
       summary: Upload a file for environmental data processing
       operationId: processFile
@@ -71,7 +71,7 @@ paths:
                 type: string
                 example: "File uploaded successfully!"
 
-  /results/deforestation/{id}:
+  /api/v1/results/deforestation/{id}:
     get:
       summary: Get deforestation rates by ID
       operationId: getDeforestationRatesById
@@ -91,7 +91,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeforestationRatesDTO'
 
-  /results/deforestation/name/{name}:
+  /api/v1/results/deforestation/name/{name}:
     get:
       summary: Get deforestation rates by name
       operationId: getDeforestationRatesByName
@@ -112,7 +112,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/DeforestationRatesDTO'
 
-  /results/deforestation:
+  /api/v1/results/deforestation:
     get:
       summary: Get all deforestation rates
       operationId: getAllDeforestationRates
@@ -126,7 +126,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/DeforestationRatesDTO'
 
-  /results/land/{id}:
+  /api/v1/results/land/{id}:
     get:
       summary: Get land use data by ID
       operationId: getLandUseById
@@ -146,7 +146,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/LandUseDTO'
 
-  /results/land/name/{name}:
+  /api/v1/results/land/name/{name}:
     get:
       summary: Get land use data by name
       operationId: getLandUseByName
@@ -167,7 +167,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/LandUseDTO'
 
-  /results/land:
+  /api/v1/results/land:
     get:
       summary: Get all land use data
       operationId: getAllLandUse
@@ -181,7 +181,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/LandUseDTO'
 
-  /results/water/{id}:
+  /api/v1/results/water/{id}:
     get:
       summary: Get water quality data by ID
       operationId: getWaterQualityById
@@ -201,7 +201,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/WaterQualityDTO'
 
-  /results/water/name/{name}:
+  /api/v1/results/water/name/{name}:
     get:
       summary: Get water quality data by name
       operationId: getWaterQualityByName
@@ -222,7 +222,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/WaterQualityDTO'
 
-  /results/water:
+  /api/v1/results/water:
     get:
       summary: Get all water quality data
       operationId: getAllWaterQuality
@@ -236,7 +236,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/WaterQualityDTO'
 
-  /results/air/{id}:
+  /api/v1/results/air/{id}:
     get:
       summary: Get air quality data by ID
       operationId: getAirQualityById
@@ -256,7 +256,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/AirQualityDTO'
 
-  /results/air/name/{name}:
+  /api/v1/results/air/name/{name}:
     get:
       summary: Get air quality data by name
       operationId: getAirQualityByName
@@ -277,7 +277,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/AirQualityDTO'
 
-  /results/air:
+  /api/v1/results/air:
     get:
       summary: Get all air quality data
       operationId: getAllAirQuality
