@@ -303,7 +303,22 @@ components:
         name:
           type: string
           description: Name associated with the deforestation rates
-        # Add other properties as per your DTO definition
+        region:
+          type: string
+          description: Region associated with the deforestation rates
+        deforestationRate:
+          type: string
+          description: Deforestation Rates
+        soilOrganicCarbonRate:
+          type: string
+          description: Organic carbon rate in soil samples
+        soilNutrientLevels:
+          type: string
+          description: Nutrients levels in soil samples
+        samplingDate:
+          type: number
+          format: date
+          description: Date when samples were taken
 
     LandUseDTO:
       type: object
@@ -315,7 +330,16 @@ components:
         name:
           type: string
           description: Name associated with the land use data
-        # Add other properties as per your DTO definition
+        location:
+          type: string
+          description: Coordinates where land use data was taken
+        landUseType:
+          type: string
+          description: Type of location eg. Urban, Rural, etc.
+        samplingDate:
+          type: number
+          format: date
+          description: Date when samples were taken
 
     WaterQualityDTO:
       type: object
@@ -327,7 +351,16 @@ components:
         name:
           type: string
           description: Name associated with the water quality data
-        # Add other properties as per your DTO definition
+        parameter:
+          type: string
+          description: Parameter associated with the water quality data
+        sampleValue:
+          type: string
+          description: Sample value of the quality of water
+        samplingDate:
+          type: number
+          format: date
+          description: Date when samples were taken
 
     AirQualityDTO:
       type: object
@@ -339,4 +372,13 @@ components:
         name:
           type: string
           description: Name associated with the air quality data
-        # Add other properties as per your DTO definition
+        pollutant:
+          type: string
+          description: Pollution rate associated with the air quality data
+        concentration:
+          type: string
+          description: Concentration rate associated with the air quality data
+        measurementDate:
+          type: number
+          format: date
+          description: Date when measurements were taken
