@@ -35,13 +35,21 @@ public class DeforestationRatesServiceImplementation implements DeforestationRat
     }
 
     @Override
-    public DeforestationRatesDTO findDeforestationRatesByName(String name) {
+    public List<DeforestationRatesDTO> findDeforestationRatesByName(String name) {
         // Find Deforestation Rates results by name
-        DeforestationRatesEntity deforestationRatesEntity = deforestationRatesRepository.findByName(name);
-        // Convert Entity to DTO
-        DeforestationRatesDTO deforestationRatesDTO = deforestationRatesDTOAndEntityConverter.convertToDTO(deforestationRatesEntity);
+        List<DeforestationRatesEntity> deforestationRatesEntities = deforestationRatesRepository.findByNameContainingIgnoreCase(name);
+        // Convert Entity to DTO by iterating over Deforestation Rates entity list
+        List<DeforestationRatesDTO> deforestationRatesDTOS = new ArrayList<>();
+
+        for (DeforestationRatesEntity deforestationRatesEntity : deforestationRatesEntities) {
+            // Convert Entity to DTO
+            DeforestationRatesDTO deforestationRatesDTO = deforestationRatesDTOAndEntityConverter.convertToDTO(deforestationRatesEntity);
+            // Add to the DTO list
+            deforestationRatesDTOS.add(deforestationRatesDTO);
+        }
         // Return processed results
-        return deforestationRatesDTO;
+        return deforestationRatesDTOS;
+
     }
 
     @Override

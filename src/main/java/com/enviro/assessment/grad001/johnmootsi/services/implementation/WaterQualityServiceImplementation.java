@@ -37,13 +37,20 @@ public class WaterQualityServiceImplementation implements WaterQualityService {
     }
 
     @Override
-    public WaterQualityDTO findWaterQualityByName(String name) {
+    public List<WaterQualityDTO> findWaterQualityByName(String name) {
         // Find water quality results by name
-        WaterQualityEntity waterQualityEntity = waterQualityRepository.findByName(name);
-        // Convert Entity to DTO
-        WaterQualityDTO waterQualityDTO = waterQualityDTOAndEntityConverter.convertToDTO(waterQualityEntity);
+        List<WaterQualityEntity> waterQualityEntities = waterQualityRepository.findByNameContainingIgnoreCase(name);
+        // Convert Entity to DTO by iterating over water quality entity list
+        List<WaterQualityDTO> waterQualityDTOS = new ArrayList<>();
+
+        for (WaterQualityEntity waterQualityEntity : waterQualityEntities) {
+            // Convert Entity to DTO
+            WaterQualityDTO waterQualityDTO = waterQualityDTOAndEntityConverter.convertToDTO(waterQualityEntity);
+            // Add to the DTO list
+            waterQualityDTOS.add(waterQualityDTO);
+        }
         // Return processed results
-        return waterQualityDTO;
+        return waterQualityDTOS;
     }
 
     @Override

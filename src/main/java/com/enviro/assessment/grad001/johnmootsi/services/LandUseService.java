@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface LandUseService {
     LandUseDTO findLandUseById(Long id);
-    LandUseDTO findLandUseByName(String name);
+    List<LandUseDTO> findLandUseByName(String name);
     List<LandUseDTO> findAllLandUse();
     void save(LandUseDTO landUseDTO);
 }
