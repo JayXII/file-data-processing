@@ -1,0 +1,384 @@
+openapi: 3.0.0
+info:
+  title: Environmental Data API
+  description: API for managing environmental data including air quality, deforestation rates, land use, and water quality.
+  contact:
+    name: Johnny
+    email: jmootsi021@student.wethinkcode.co.za
+  termsOfService: Terms of service
+  license:
+    name: License name
+    url: License URL
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Local server (default)
+
+paths:
+  /api/v1/hello:
+    get:
+      summary: Test endpoint to greet the world
+      operationId: helloWorld
+      responses:
+        '200':
+          description: A greeting message
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Oh hai, world!
+
+  /api/v1/hello/{name}:
+    get:
+      summary: Test endpoint to greet a specific person
+      operationId: helloName
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The name of the person to greet
+      responses:
+        '200':
+          description: A greeting message with the provided name
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Oh hai, John!
+
+  /api/v1/upload:
+    post:
+      summary: Upload a file for environmental data processing
+      operationId: processFile
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Successful upload message
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "File uploaded successfully!"
+
+  /api/v1/results/deforestation/{id}:
+    get:
+      summary: Get deforestation rates by ID
+      operationId: getDeforestationRatesById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+          description: Numeric ID of the deforestation data
+      responses:
+        '200':
+          description: Deforestation rates data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeforestationRatesDTO'
+
+  /api/v1/results/deforestation/name/{name}:
+    get:
+      summary: Get deforestation rates by name
+      operationId: getDeforestationRatesByName
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Name associated with the deforestation data
+      responses:
+        '200':
+          description: List of deforestation rates data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DeforestationRatesDTO'
+
+  /api/v1/results/deforestation:
+    get:
+      summary: Get all deforestation rates
+      operationId: getAllDeforestationRates
+      responses:
+        '200':
+          description: List of all deforestation rates data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DeforestationRatesDTO'
+
+  /api/v1/results/land/{id}:
+    get:
+      summary: Get land use data by ID
+      operationId: getLandUseById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+          description: Numeric ID of the land use data
+      responses:
+        '200':
+          description: Land use data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LandUseDTO'
+
+  /api/v1/results/land/name/{name}:
+    get:
+      summary: Get land use data by name
+      operationId: getLandUseByName
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Name associated with the land use data
+      responses:
+        '200':
+          description: List of land use data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LandUseDTO'
+
+  /api/v1/results/land:
+    get:
+      summary: Get all land use data
+      operationId: getAllLandUse
+      responses:
+        '200':
+          description: List of all land use data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LandUseDTO'
+
+  /api/v1/results/water/{id}:
+    get:
+      summary: Get water quality data by ID
+      operationId: getWaterQualityById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+          description: Numeric ID of the water quality data
+      responses:
+        '200':
+          description: Water quality data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WaterQualityDTO'
+
+  /api/v1/results/water/name/{name}:
+    get:
+      summary: Get water quality data by name
+      operationId: getWaterQualityByName
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Name associated with the water quality data
+      responses:
+        '200':
+          description: List of water quality data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WaterQualityDTO'
+
+  /api/v1/results/water:
+    get:
+      summary: Get all water quality data
+      operationId: getAllWaterQuality
+      responses:
+        '200':
+          description: List of all water quality data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WaterQualityDTO'
+
+  /api/v1/results/air/{id}:
+    get:
+      summary: Get air quality data by ID
+      operationId: getAirQualityById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+          description: Numeric ID of the air quality data
+      responses:
+        '200':
+          description: Air quality data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AirQualityDTO'
+
+  /api/v1/results/air/name/{name}:
+    get:
+      summary: Get air quality data by name
+      operationId: getAirQualityByName
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Name associated with the air quality data
+      responses:
+        '200':
+          description: List of air quality data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AirQualityDTO'
+
+  /api/v1/results/air:
+    get:
+      summary: Get all air quality data
+      operationId: getAllAirQuality
+      responses:
+        '200':
+          description: List of all air quality data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AirQualityDTO'
+
+components:
+  schemas:
+    DeforestationRatesDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: The unique identifier for deforestation rates
+        name:
+          type: string
+          description: Name associated with the deforestation rates
+        region:
+          type: string
+          description: Region associated with the deforestation rates
+        deforestationRate:
+          type: string
+          description: Deforestation Rates
+        soilOrganicCarbonRate:
+          type: string
+          description: Organic carbon rate in soil samples
+        soilNutrientLevels:
+          type: string
+          description: Nutrients levels in soil samples
+        samplingDate:
+          type: number
+          format: date
+          description: Date when samples were taken
+
+    LandUseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: The unique identifier for land use data
+        name:
+          type: string
+          description: Name associated with the land use data
+        location:
+          type: string
+          description: Coordinates where land use data was taken
+        landUseType:
+          type: string
+          description: Type of location eg. Urban, Rural, etc.
+        samplingDate:
+          type: number
+          format: date
+          description: Date when samples were taken
+
+    WaterQualityDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: The unique identifier for water quality data
+        name:
+          type: string
+          description: Name associated with the water quality data
+        parameter:
+          type: string
+          description: Parameter associated with the water quality data
+        sampleValue:
+          type: string
+          description: Sample value of the quality of water
+        samplingDate:
+          type: number
+          format: date
+          description: Date when samples were taken
+
+    AirQualityDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: The unique identifier for air quality data
+        name:
+          type: string
+          description: Name associated with the air quality data
+        pollutant:
+          type: string
+          description: Pollution rate associated with the air quality data
+        concentration:
+          type: string
+          description: Concentration rate associated with the air quality data
+        measurementDate:
+          type: number
+          format: date
+          description: Date when measurements were taken
