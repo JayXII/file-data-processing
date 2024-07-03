@@ -17,9 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Date;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 @Service
 public class EnvironmentalDataServiceImplementation implements EnvironmentalDataService {
@@ -44,64 +42,76 @@ public class EnvironmentalDataServiceImplementation implements EnvironmentalData
 
     @Override
     public String upload(MultipartFile file){
+        // Local vars
+        List<String> contents = new ArrayList<>();
+        String datasetName = "";
+        String line = "";
+
         try {
             // Scanner object to read files
             Scanner scanner = new Scanner(new File(Objects.requireNonNull(file.getOriginalFilename())));
-            // Read file lines and add them to DTO's
-            AirQualityDTO airQualityDTO = new AirQualityDTO();
-            airQualityDTO.setName(scanner.nextLine().split(":")[1]);
-            airQualityDTO.setDescription(scanner.nextLine().split(":")[1]);
-            airQualityDTO.setMeasurementDate(new Date(scanner.nextLine().split(":")[1].strip()));
-            airQualityDTO.setPollutant(scanner.nextLine().split(":")[1]);
-            airQualityDTO.setConcentration(scanner.nextLine().split(":")[1]);
 
-            // Convert and save the entity to database
-            AirQualityEntity airQualityEntity = airQualityDTOAndEntityConverter.convertToEntity(airQualityDTO);
-            airQualityRepository.save(airQualityEntity);
+            // Read a line
+            while (scanner.hasNextLine() || !contents.isEmpty()) {
+                // Account for the remaining data in the list when there's no more lines to read
+                if (scanner.hasNextLine()) {
+                    line = scanner.nextLine();
+                } else {
+                    datasetName = "empty line";
+                }
 
-            scanner.nextLine();
+                // Split the line at ":" if the line is not empty
+                // Get the dataset name
+                if (line.equals("")) {
+                    datasetName = "empty line";
+                }
+                if (line.toLowerCase().startsWith("dataset")) {
+                    datasetName = line.split(":")[1];
+                    contents.add(datasetName);
+                }
 
-            WaterQualityDTO waterQualityDTO = new WaterQualityDTO();
-            waterQualityDTO.setName(scanner.nextLine().split(":")[1]);
-            waterQualityDTO.setDescription(scanner.nextLine().split(":")[1]);
-            waterQualityDTO.setSamplingDate(new Date(scanner.nextLine().split(":")[1].strip()));
-            waterQualityDTO.setParameter(scanner.nextLine().split(":")[1]);
-            waterQualityDTO.setSampleValue(scanner.nextLine().split(":")[1]);
+                // Call the DTO converter that corresponds to the dataset name
+                else if (datasetName.equals("empty line")) {
+                    if (contents.get(0).toLowerCase().contains("air")) {
+                        // Add contents to the DTO
+                        AirQualityDTO airQualityDTO = airQualityDTOAndEntityConverter.convertToDTO(contents);
 
-            // Convert and save the entity to database
-            WaterQualityEntity waterQualityEntity = waterQualityDTOAndEntityConverter.convertToEntity(waterQualityDTO);
-            waterQualityRepository.save(waterQualityEntity);
+                        // Convert and save the entity to database
+                        AirQualityEntity airQualityEntity = airQualityDTOAndEntityConverter.convertToEntity(airQualityDTO);
+                        airQualityRepository.save(airQualityEntity);
+                        contents.clear();
+                    } else if (contents.get(0).toLowerCase().contains("water")) {
+                        // Add contents to the DTO
+                        WaterQualityDTO airQualityDTO = waterQualityDTOAndEntityConverter.convertToDTO(contents);
 
-            scanner.nextLine();
+                        // Convert and save the entity to database
+                        WaterQualityEntity waterQualityEntity = waterQualityDTOAndEntityConverter.convertToEntity(airQualityDTO);
+                        waterQualityRepository.save(waterQualityEntity);
+                        contents.clear();
+                    } else if (contents.get(0).toLowerCase().contains("deforestation")) {
+                        // Add contents to the DTO
+                        DeforestationRatesDTO deforestationRatesDTO = deforestationRatesDTOAndEntityConverter.convertToDTO(contents);
 
-            LandUseDTO landUseDTO = new LandUseDTO();
-            landUseDTO.setName(scanner.nextLine().split(":")[1]);
-            landUseDTO.setDescription(scanner.nextLine().split(":")[1]);
-            landUseDTO.setLocation(scanner.nextLine().split(":")[1]);
-            landUseDTO.setLandUseType(scanner.nextLine().split(":")[1]);
-            landUseDTO.setSamplingDate(new Date(scanner.nextLine().split(":")[1]));
+                        // Convert and save the entity to database
+                        DeforestationRatesEntity deforestationRatesEntity = deforestationRatesDTOAndEntityConverter.convertToEntity(deforestationRatesDTO);
+                        deforestationRatesRepository.save(deforestationRatesEntity);
+                        contents.clear();
+                    } else if (contents.get(0).toLowerCase().contains("land")) {
+                        // Add contents to the DTO
+                        LandUseDTO landUseDTO = landUseDTOAndEntityConverter.convertToDTO(contents);
 
-            // Convert and save the entity to database
-            LandUseEntity landUseEntity = landUseDTOAndEntityConverter.convertToEntity(landUseDTO);
-            landUseRepository.save(landUseEntity);
-
-            scanner.nextLine();
-
-            DeforestationRatesDTO deforestationRatesDTO = new DeforestationRatesDTO();
-            deforestationRatesDTO.setName(scanner.nextLine().split(":")[1]);
-            deforestationRatesDTO.setDescription(scanner.nextLine().split(":")[1]);
-            deforestationRatesDTO.setRegion(scanner.nextLine().split(":")[1]);
-            deforestationRatesDTO.setSamplingDate(new Date(scanner.nextLine().split(":")[1].strip()));
-            deforestationRatesDTO.setDeforestationRate(scanner.nextLine().split(":")[1]);
-            deforestationRatesDTO.setSoilOrganicCarbonRate(scanner.nextLine().split(":")[1]);
-            deforestationRatesDTO.setSoilNutrientLevels(scanner.nextLine().split(":")[1]);
-
-            // Convert and save the entity to database
-            DeforestationRatesEntity deforestationRatesEntity = deforestationRatesDTOAndEntityConverter.convertToEntity(deforestationRatesDTO);
-            deforestationRatesRepository.save(deforestationRatesEntity);
+                        // Convert and save the entity to database
+                        LandUseEntity landUseEntity = landUseDTOAndEntityConverter.convertToEntity(landUseDTO);
+                        landUseRepository.save(landUseEntity);
+                        contents.clear();
+                    }
+                } else {
+                    // Add contents to the list
+                    contents.add(line.split(":")[1]);
+                }
+            }
 
             scanner.close();
-
             return "Upload successful";
         } catch (FileNotFoundException e) {
             throw new RuntimeException("File not found");
@@ -109,5 +119,4 @@ public class EnvironmentalDataServiceImplementation implements EnvironmentalData
             throw new RuntimeException(e);
         }
     }
-
 }
