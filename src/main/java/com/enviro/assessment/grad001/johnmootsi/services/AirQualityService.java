@@ -8,5 +8,5 @@ public interface AirQualityService {
     AirQualityDTO findAirQualityById(Long id);
     List<AirQualityDTO> findAirQualityByName(String name);
     List<AirQualityDTO> findAllAirQuality();
-    void save(AirQualityDTO airQualityDTO);
+    String save(AirQualityDTO airQualityDTO);
 }
