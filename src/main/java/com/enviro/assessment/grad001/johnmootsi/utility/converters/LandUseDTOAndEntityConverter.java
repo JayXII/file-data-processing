@@ -1,4 +1,4 @@
-package com.enviro.assessment.grad001.johnmootsi.converters;
+package com.enviro.assessment.grad001.johnmootsi.utility.converters;
 
 import com.enviro.assessment.grad001.johnmootsi.dto.LandUseDTO;
 import com.enviro.assessment.grad001.johnmootsi.dto.WaterQualityDTO;
@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 public class LandUseDTOAndEntityConverter {
 
-    public LandUseEntity convertToEntity(LandUseDTO landUseDTO) {
+    public static LandUseEntity convertToEntity(LandUseDTO landUseDTO) {
 
         LandUseEntity landUseEntity = new LandUseEntity();
 
@@ -24,7 +24,7 @@ public class LandUseDTOAndEntityConverter {
         return landUseEntity;
     }
 
-    public LandUseDTO convertToDTO(LandUseEntity landUseEntity) {
+    public static LandUseDTO convertToDTO(LandUseEntity landUseEntity) {
 
         LandUseDTO landUseDTO = new LandUseDTO();
 
@@ -38,7 +38,7 @@ public class LandUseDTOAndEntityConverter {
         return landUseDTO;
     }
 
-    public LandUseDTO convertToDTO(List<String> elements) {
+    public static LandUseDTO convertToDTO(List<String> elements) {
 
         LandUseDTO landUseDTO = new LandUseDTO();
 

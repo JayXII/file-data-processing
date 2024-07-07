@@ -1,4 +1,4 @@
-package com.enviro.assessment.grad001.johnmootsi.converters;
+package com.enviro.assessment.grad001.johnmootsi.utility.converters;
 
 import com.enviro.assessment.grad001.johnmootsi.dto.AirQualityDTO;
 import com.enviro.assessment.grad001.johnmootsi.dto.WaterQualityDTO;
@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 public class WaterQualityDTOAndEntityConverter {
 
-    public WaterQualityEntity convertToEntity(WaterQualityDTO waterQualityDTO) {
+    public static WaterQualityEntity convertToEntity(WaterQualityDTO waterQualityDTO) {
 
         WaterQualityEntity waterQualityEntity = new WaterQualityEntity();
 
@@ -24,7 +24,7 @@ public class WaterQualityDTOAndEntityConverter {
         return waterQualityEntity;
     }
 
-    public WaterQualityDTO convertToDTO(WaterQualityEntity waterQualityEntity) {
+    public static WaterQualityDTO convertToDTO(WaterQualityEntity waterQualityEntity) {
 
         WaterQualityDTO waterQualityDTO = new WaterQualityDTO();
 
@@ -38,7 +38,7 @@ public class WaterQualityDTOAndEntityConverter {
         return waterQualityDTO;
     }
 
-    public WaterQualityDTO convertToDTO(List<String> elements) {
+    public static WaterQualityDTO convertToDTO(List<String> elements) {
 
         WaterQualityDTO waterQualityDTO = new WaterQualityDTO();
 

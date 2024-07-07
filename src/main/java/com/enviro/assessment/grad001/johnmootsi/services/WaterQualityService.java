@@ -8,5 +8,5 @@ public interface WaterQualityService {
     WaterQualityDTO findWaterQualityById(Long id);
     List<WaterQualityDTO> findWaterQualityByName(String name);
     List<WaterQualityDTO> findAllWaterQuality();
-    void save(WaterQualityDTO waterQualityDTO);
+    String save(WaterQualityDTO waterQualityDTO);
 }

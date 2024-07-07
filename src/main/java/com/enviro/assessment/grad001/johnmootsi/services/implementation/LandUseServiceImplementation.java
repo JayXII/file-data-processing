@@ -1,11 +1,10 @@
 package com.enviro.assessment.grad001.johnmootsi.services.implementation;
 
-import com.enviro.assessment.grad001.johnmootsi.converters.LandUseDTOAndEntityConverter;
 import com.enviro.assessment.grad001.johnmootsi.dto.LandUseDTO;
 import com.enviro.assessment.grad001.johnmootsi.entities.LandUseEntity;
 import com.enviro.assessment.grad001.johnmootsi.repository.LandUseRepository;
 import com.enviro.assessment.grad001.johnmootsi.services.LandUseService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.enviro.assessment.grad001.johnmootsi.utility.converters.LandUseDTOAndEntityConverter;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,10 +13,12 @@ import java.util.Optional;
 
 @Service
 public class LandUseServiceImplementation implements LandUseService {
-    @Autowired
-    private LandUseRepository landUseRepository;
-    @Autowired
-    private LandUseDTOAndEntityConverter landUseDTOAndEntityConverter;
+
+    private final LandUseRepository landUseRepository;
+
+    public LandUseServiceImplementation(LandUseRepository landUseRepository) {
+        this.landUseRepository = landUseRepository;
+    }
 
     @Override
     public LandUseDTO findLandUseById(Long id) {
@@ -27,7 +28,7 @@ public class LandUseServiceImplementation implements LandUseService {
         // Convert Entity to DTO if it exists
         if (optionalLandUseEntity.isPresent()) {
             LandUseEntity landUseEntity = optionalLandUseEntity.get();
-            landUseDTO = landUseDTOAndEntityConverter.convertToDTO(landUseEntity);
+            landUseDTO = LandUseDTOAndEntityConverter.convertToDTO(landUseEntity);
         }
         // Return processed results
         return landUseDTO;
@@ -42,7 +43,7 @@ public class LandUseServiceImplementation implements LandUseService {
 
         for (LandUseEntity landUseEntity : landUseEntities) {
             // Convert Entity to DTO
-            LandUseDTO landUseDTO = landUseDTOAndEntityConverter.convertToDTO(landUseEntity);
+            LandUseDTO landUseDTO = LandUseDTOAndEntityConverter.convertToDTO(landUseEntity);
             // Add to the DTO list
             landUseDTOS.add(landUseDTO);
         }
@@ -59,7 +60,7 @@ public class LandUseServiceImplementation implements LandUseService {
 
         for (LandUseEntity landUseEntity : landUseEntities) {
             // Convert Entity to DTO
-            LandUseDTO landUseDTO = landUseDTOAndEntityConverter.convertToDTO(landUseEntity);
+            LandUseDTO landUseDTO = LandUseDTOAndEntityConverter.convertToDTO(landUseEntity);
             // Add to the DTO list
             landUseDTOS.add(landUseDTO);
         }
@@ -68,8 +69,9 @@ public class LandUseServiceImplementation implements LandUseService {
     }
 
     @Override
-    public void save(LandUseDTO landUseDTO) {
-        LandUseEntity landUseEntity = landUseDTOAndEntityConverter.convertToEntity(landUseDTO);
+    public String save(LandUseDTO landUseDTO) {
+        LandUseEntity landUseEntity = LandUseDTOAndEntityConverter.convertToEntity(landUseDTO);
         landUseRepository.save(landUseEntity);
+        return "Success";
     }
 }

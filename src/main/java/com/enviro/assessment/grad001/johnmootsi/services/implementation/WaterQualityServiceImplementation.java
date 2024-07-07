@@ -1,11 +1,10 @@
 package com.enviro.assessment.grad001.johnmootsi.services.implementation;
 
-import com.enviro.assessment.grad001.johnmootsi.converters.WaterQualityDTOAndEntityConverter;
+import com.enviro.assessment.grad001.johnmootsi.utility.converters.WaterQualityDTOAndEntityConverter;
 import com.enviro.assessment.grad001.johnmootsi.dto.WaterQualityDTO;
 import com.enviro.assessment.grad001.johnmootsi.entities.WaterQualityEntity;
 import com.enviro.assessment.grad001.johnmootsi.repository.WaterQualityRepository;
 import com.enviro.assessment.grad001.johnmootsi.services.WaterQualityService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,12 +14,11 @@ import java.util.Optional;
 @Service
 public class WaterQualityServiceImplementation implements WaterQualityService {
 
-    @Autowired
-    private WaterQualityRepository waterQualityRepository;
+    private final WaterQualityRepository waterQualityRepository;
 
-    @Autowired
-    private WaterQualityDTOAndEntityConverter waterQualityDTOAndEntityConverter;
-
+    public WaterQualityServiceImplementation(WaterQualityRepository waterQualityRepository) {
+        this.waterQualityRepository = waterQualityRepository;
+    }
 
     @Override
     public WaterQualityDTO findWaterQualityById(Long id) {
@@ -30,7 +28,7 @@ public class WaterQualityServiceImplementation implements WaterQualityService {
         // Convert Entity to DTO if it exists
         if (optionalWaterQualityEntity.isPresent()) {
             WaterQualityEntity waterQualityEntity = optionalWaterQualityEntity.get();
-            waterQualityDTO = waterQualityDTOAndEntityConverter.convertToDTO(waterQualityEntity);
+            waterQualityDTO = WaterQualityDTOAndEntityConverter.convertToDTO(waterQualityEntity);
         }
         // Return processed results
         return waterQualityDTO;
@@ -45,7 +43,7 @@ public class WaterQualityServiceImplementation implements WaterQualityService {
 
         for (WaterQualityEntity waterQualityEntity : waterQualityEntities) {
             // Convert Entity to DTO
-            WaterQualityDTO waterQualityDTO = waterQualityDTOAndEntityConverter.convertToDTO(waterQualityEntity);
+            WaterQualityDTO waterQualityDTO = WaterQualityDTOAndEntityConverter.convertToDTO(waterQualityEntity);
             // Add to the DTO list
             waterQualityDTOS.add(waterQualityDTO);
         }
@@ -62,7 +60,7 @@ public class WaterQualityServiceImplementation implements WaterQualityService {
 
         for (WaterQualityEntity waterQualityEntity : waterQualityEntities) {
             // Convert Entity to DTO
-            WaterQualityDTO waterQualityDTO = waterQualityDTOAndEntityConverter.convertToDTO(waterQualityEntity);
+            WaterQualityDTO waterQualityDTO = WaterQualityDTOAndEntityConverter.convertToDTO(waterQualityEntity);
             // Add to the DTO list
             waterQualityDTOS.add(waterQualityDTO);
         }
@@ -71,8 +69,9 @@ public class WaterQualityServiceImplementation implements WaterQualityService {
     }
 
     @Override
-    public void save(WaterQualityDTO waterQualityDTO) {
-        WaterQualityEntity waterQualityEntity = waterQualityDTOAndEntityConverter.convertToEntity(waterQualityDTO);
+    public String save(WaterQualityDTO waterQualityDTO) {
+        WaterQualityEntity waterQualityEntity = WaterQualityDTOAndEntityConverter.convertToEntity(waterQualityDTO);
         waterQualityRepository.save(waterQualityEntity);
+        return "Success";
     }
 }

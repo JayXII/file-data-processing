@@ -1,9 +1,9 @@
 package com.enviro.assessment.grad001.johnmootsi.services.implementation;
 
-import com.enviro.assessment.grad001.johnmootsi.converters.AirQualityDTOAndEntityConverter;
-import com.enviro.assessment.grad001.johnmootsi.converters.DeforestationRatesDTOAndEntityConverter;
-import com.enviro.assessment.grad001.johnmootsi.converters.LandUseDTOAndEntityConverter;
-import com.enviro.assessment.grad001.johnmootsi.converters.WaterQualityDTOAndEntityConverter;
+import com.enviro.assessment.grad001.johnmootsi.utility.converters.AirQualityDTOAndEntityConverter;
+import com.enviro.assessment.grad001.johnmootsi.utility.converters.DeforestationRatesDTOAndEntityConverter;
+import com.enviro.assessment.grad001.johnmootsi.utility.converters.LandUseDTOAndEntityConverter;
+import com.enviro.assessment.grad001.johnmootsi.utility.converters.WaterQualityDTOAndEntityConverter;
 import com.enviro.assessment.grad001.johnmootsi.dto.*;
 import com.enviro.assessment.grad001.johnmootsi.entities.AirQualityEntity;
 import com.enviro.assessment.grad001.johnmootsi.entities.DeforestationRatesEntity;
@@ -30,14 +30,6 @@ public class EnvironmentalDataServiceImplementation implements EnvironmentalData
     private LandUseRepository landUseRepository;
     @Autowired
     private WaterQualityRepository waterQualityRepository;
-    @Autowired
-    private AirQualityDTOAndEntityConverter airQualityDTOAndEntityConverter;
-    @Autowired
-    private WaterQualityDTOAndEntityConverter waterQualityDTOAndEntityConverter;
-    @Autowired
-    private LandUseDTOAndEntityConverter landUseDTOAndEntityConverter;
-    @Autowired
-    private DeforestationRatesDTOAndEntityConverter deforestationRatesDTOAndEntityConverter;
 
 
     @Override
@@ -62,7 +54,7 @@ public class EnvironmentalDataServiceImplementation implements EnvironmentalData
 
                 // Split the line at ":" if the line is not empty
                 // Get the dataset name
-                if (line.equals("")) {
+                if (line.isEmpty()) { // changed this line from "" to isEmpty
                     datasetName = "empty line";
                 }
                 if (line.toLowerCase().startsWith("dataset")) {
@@ -74,34 +66,34 @@ public class EnvironmentalDataServiceImplementation implements EnvironmentalData
                 else if (datasetName.equals("empty line")) {
                     if (contents.get(0).toLowerCase().contains("air")) {
                         // Add contents to the DTO
-                        AirQualityDTO airQualityDTO = airQualityDTOAndEntityConverter.convertToDTO(contents);
+                        AirQualityDTO airQualityDTO = AirQualityDTOAndEntityConverter.convertToDTO(contents);
 
                         // Convert and save the entity to database
-                        AirQualityEntity airQualityEntity = airQualityDTOAndEntityConverter.convertToEntity(airQualityDTO);
+                        AirQualityEntity airQualityEntity = AirQualityDTOAndEntityConverter.convertToEntity(airQualityDTO);
                         airQualityRepository.save(airQualityEntity);
                         contents.clear();
                     } else if (contents.get(0).toLowerCase().contains("water")) {
                         // Add contents to the DTO
-                        WaterQualityDTO airQualityDTO = waterQualityDTOAndEntityConverter.convertToDTO(contents);
+                        WaterQualityDTO airQualityDTO = WaterQualityDTOAndEntityConverter.convertToDTO(contents);
 
                         // Convert and save the entity to database
-                        WaterQualityEntity waterQualityEntity = waterQualityDTOAndEntityConverter.convertToEntity(airQualityDTO);
+                        WaterQualityEntity waterQualityEntity = WaterQualityDTOAndEntityConverter.convertToEntity(airQualityDTO);
                         waterQualityRepository.save(waterQualityEntity);
                         contents.clear();
                     } else if (contents.get(0).toLowerCase().contains("deforestation")) {
                         // Add contents to the DTO
-                        DeforestationRatesDTO deforestationRatesDTO = deforestationRatesDTOAndEntityConverter.convertToDTO(contents);
+                        DeforestationRatesDTO deforestationRatesDTO = DeforestationRatesDTOAndEntityConverter.convertToDTO(contents);
 
                         // Convert and save the entity to database
-                        DeforestationRatesEntity deforestationRatesEntity = deforestationRatesDTOAndEntityConverter.convertToEntity(deforestationRatesDTO);
+                        DeforestationRatesEntity deforestationRatesEntity = DeforestationRatesDTOAndEntityConverter.convertToEntity(deforestationRatesDTO);
                         deforestationRatesRepository.save(deforestationRatesEntity);
                         contents.clear();
                     } else if (contents.get(0).toLowerCase().contains("land")) {
                         // Add contents to the DTO
-                        LandUseDTO landUseDTO = landUseDTOAndEntityConverter.convertToDTO(contents);
+                        LandUseDTO landUseDTO = LandUseDTOAndEntityConverter.convertToDTO(contents);
 
                         // Convert and save the entity to database
-                        LandUseEntity landUseEntity = landUseDTOAndEntityConverter.convertToEntity(landUseDTO);
+                        LandUseEntity landUseEntity = LandUseDTOAndEntityConverter.convertToEntity(landUseDTO);
                         landUseRepository.save(landUseEntity);
                         contents.clear();
                     }

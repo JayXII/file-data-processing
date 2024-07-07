@@ -117,10 +117,15 @@ public class FileProcessorController {
     }
 
     // Get air quality results by id endpoint
-    @GetMapping("/results/air/{id}")
-    public ResponseEntity<AirQualityDTO> getAirQualityResultsById(@PathVariable Long id) {
+    @GetMapping(value = "/results/air/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> getAirQualityResultsById(@PathVariable Long id) {
         AirQualityDTO airQualityDTO = airQualityService.findAirQualityById(id);
-        return new ResponseEntity<>(airQualityDTO, HttpStatus.OK);
+        if (airQualityDTO == null) {
+            String message = "Requested air quality results with id: " + id + ", does not exist";
+            return new ResponseEntity<>(message.toCharArray(), HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(airQualityDTO, HttpStatus.OK);
+        }
     }
 
     // Get air quality results by name endpoint

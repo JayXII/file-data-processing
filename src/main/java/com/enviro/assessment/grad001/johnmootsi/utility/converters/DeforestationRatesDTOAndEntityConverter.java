@@ -1,4 +1,4 @@
-package com.enviro.assessment.grad001.johnmootsi.converters;
+package com.enviro.assessment.grad001.johnmootsi.utility.converters;
 
 import com.enviro.assessment.grad001.johnmootsi.dto.DeforestationRatesDTO;
 import com.enviro.assessment.grad001.johnmootsi.dto.WaterQualityDTO;
@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 public class DeforestationRatesDTOAndEntityConverter {
 
-    public DeforestationRatesEntity convertToEntity(DeforestationRatesDTO deforestationRatesDTO) {
+    public static DeforestationRatesEntity convertToEntity(DeforestationRatesDTO deforestationRatesDTO) {
 
         DeforestationRatesEntity deforestationRatesEntity = new DeforestationRatesEntity();
 
@@ -27,7 +27,7 @@ public class DeforestationRatesDTOAndEntityConverter {
 
     }
 
-    public DeforestationRatesDTO convertToDTO(DeforestationRatesEntity deforestationRatesEntity) {
+    public static DeforestationRatesDTO convertToDTO(DeforestationRatesEntity deforestationRatesEntity) {
 
         DeforestationRatesDTO deforestationRatesDTO = new DeforestationRatesDTO();
 
@@ -43,7 +43,7 @@ public class DeforestationRatesDTOAndEntityConverter {
         return deforestationRatesDTO;
     }
 
-    public DeforestationRatesDTO convertToDTO(List<String> elements) {
+    public static DeforestationRatesDTO convertToDTO(List<String> elements) {
 
         DeforestationRatesDTO deforestationRatesDTO = new DeforestationRatesDTO();
 

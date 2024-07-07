@@ -8,5 +8,5 @@ public interface DeforestationRatesService {
     DeforestationRatesDTO findDeforestationRatesById(Long id);
     List<DeforestationRatesDTO> findDeforestationRatesByName(String name);
     List<DeforestationRatesDTO> findAllDeforestationRates();
-    void save(DeforestationRatesDTO deforestationRatesDTO);
+    String save(DeforestationRatesDTO deforestationRatesDTO);
 }

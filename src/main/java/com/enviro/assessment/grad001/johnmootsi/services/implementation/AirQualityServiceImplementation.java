@@ -1,11 +1,10 @@
 package com.enviro.assessment.grad001.johnmootsi.services.implementation;
 
-import com.enviro.assessment.grad001.johnmootsi.converters.AirQualityDTOAndEntityConverter;
+import com.enviro.assessment.grad001.johnmootsi.utility.converters.AirQualityDTOAndEntityConverter;
 import com.enviro.assessment.grad001.johnmootsi.dto.AirQualityDTO;
 import com.enviro.assessment.grad001.johnmootsi.entities.AirQualityEntity;
 import com.enviro.assessment.grad001.johnmootsi.repository.AirQualityRepository;
 import com.enviro.assessment.grad001.johnmootsi.services.AirQualityService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,22 +13,23 @@ import java.util.Optional;
 
 @Service
 public class AirQualityServiceImplementation implements AirQualityService {
-    
-    @Autowired
-    AirQualityRepository airQualityRepository;
 
-    @Autowired
-    AirQualityDTOAndEntityConverter airQualityDTOAndEntityConverter;
-    
+    private final AirQualityRepository airQualityRepository;
+
+    public AirQualityServiceImplementation(AirQualityRepository airQualityRepository) {
+        this.airQualityRepository = airQualityRepository;
+    }
+
     @Override
     public AirQualityDTO findAirQualityById(Long id) {
+
         AirQualityDTO airQualityDTO = null;
         // Find air quality results by id
         Optional<AirQualityEntity> optionalAirQualityEntity = airQualityRepository.findById(id);
         // Convert Entity to DTO if it exists
         if (optionalAirQualityEntity.isPresent()) {
             AirQualityEntity airQualityEntity = optionalAirQualityEntity.get();
-            airQualityDTO = airQualityDTOAndEntityConverter.convertToDTO(airQualityEntity);
+            airQualityDTO = AirQualityDTOAndEntityConverter.convertToDTO(airQualityEntity);
         }
         // Return processed results
         return airQualityDTO;
@@ -44,7 +44,7 @@ public class AirQualityServiceImplementation implements AirQualityService {
 
         for (AirQualityEntity airQualityEntity : airQualityEntities) {
             // Convert Entity to DTO
-            AirQualityDTO airQualityDTO = airQualityDTOAndEntityConverter.convertToDTO(airQualityEntity);
+            AirQualityDTO airQualityDTO = AirQualityDTOAndEntityConverter.convertToDTO(airQualityEntity);
             // Add to the DTO list
             airQualityDTOS.add(airQualityDTO);
         }
@@ -61,7 +61,7 @@ public class AirQualityServiceImplementation implements AirQualityService {
 
         for (AirQualityEntity airQualityEntity : airQualityEntities) {
             // Convert Entity to DTO
-            AirQualityDTO airQualityDTO = airQualityDTOAndEntityConverter.convertToDTO(airQualityEntity);
+            AirQualityDTO airQualityDTO = AirQualityDTOAndEntityConverter.convertToDTO(airQualityEntity);
             // Add to the DTO list
             airQualityDTOS.add(airQualityDTO);
         }
@@ -70,8 +70,9 @@ public class AirQualityServiceImplementation implements AirQualityService {
     }
 
     @Override
-    public void save(AirQualityDTO airQualityDTO) {
-        AirQualityEntity airQualityEntity = airQualityDTOAndEntityConverter.convertToEntity(airQualityDTO);
+    public String save(AirQualityDTO airQualityDTO) {
+        AirQualityEntity airQualityEntity = AirQualityDTOAndEntityConverter.convertToEntity(airQualityDTO);
         airQualityRepository.save(airQualityEntity);
+        return "Success";
     }
 }

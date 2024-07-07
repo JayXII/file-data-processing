@@ -1,11 +1,10 @@
 package com.enviro.assessment.grad001.johnmootsi.services.implementation;
 
-import com.enviro.assessment.grad001.johnmootsi.converters.DeforestationRatesDTOAndEntityConverter;
+import com.enviro.assessment.grad001.johnmootsi.utility.converters.DeforestationRatesDTOAndEntityConverter;
 import com.enviro.assessment.grad001.johnmootsi.dto.DeforestationRatesDTO;
 import com.enviro.assessment.grad001.johnmootsi.entities.DeforestationRatesEntity;
 import com.enviro.assessment.grad001.johnmootsi.repository.DeforestationRatesRepository;
 import com.enviro.assessment.grad001.johnmootsi.services.DeforestationRatesService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,10 +14,11 @@ import java.util.Optional;
 @Service
 public class DeforestationRatesServiceImplementation implements DeforestationRatesService {
 
-    @Autowired
-    private DeforestationRatesRepository deforestationRatesRepository;
-    @Autowired
-    private DeforestationRatesDTOAndEntityConverter deforestationRatesDTOAndEntityConverter;
+    private final DeforestationRatesRepository deforestationRatesRepository;
+
+    public DeforestationRatesServiceImplementation(DeforestationRatesRepository deforestationRatesRepository) {
+        this.deforestationRatesRepository = deforestationRatesRepository;
+    }
 
     @Override
     public DeforestationRatesDTO findDeforestationRatesById(Long id) {
@@ -28,7 +28,7 @@ public class DeforestationRatesServiceImplementation implements DeforestationRat
         // Convert Entity to DTO if it exists
         if (optionalDeforestationRatesEntity.isPresent()) {
             DeforestationRatesEntity deforestationRatesEntity = optionalDeforestationRatesEntity.get();
-            deforestationRatesDTO = deforestationRatesDTOAndEntityConverter.convertToDTO(deforestationRatesEntity);
+            deforestationRatesDTO = DeforestationRatesDTOAndEntityConverter.convertToDTO(deforestationRatesEntity);
         }
         // Return processed results
         return deforestationRatesDTO;
@@ -43,7 +43,7 @@ public class DeforestationRatesServiceImplementation implements DeforestationRat
 
         for (DeforestationRatesEntity deforestationRatesEntity : deforestationRatesEntities) {
             // Convert Entity to DTO
-            DeforestationRatesDTO deforestationRatesDTO = deforestationRatesDTOAndEntityConverter.convertToDTO(deforestationRatesEntity);
+            DeforestationRatesDTO deforestationRatesDTO = DeforestationRatesDTOAndEntityConverter.convertToDTO(deforestationRatesEntity);
             // Add to the DTO list
             deforestationRatesDTOS.add(deforestationRatesDTO);
         }
@@ -61,7 +61,7 @@ public class DeforestationRatesServiceImplementation implements DeforestationRat
 
         for (DeforestationRatesEntity deforestationRatesEntity : deforestationRatesEntities) {
             // Convert Entity to DTO
-            DeforestationRatesDTO deforestationRatesDTO = deforestationRatesDTOAndEntityConverter.convertToDTO(deforestationRatesEntity);
+            DeforestationRatesDTO deforestationRatesDTO = DeforestationRatesDTOAndEntityConverter.convertToDTO(deforestationRatesEntity);
             // Add to the DTO list
             deforestationRatesDTOS.add(deforestationRatesDTO);
         }
@@ -70,8 +70,9 @@ public class DeforestationRatesServiceImplementation implements DeforestationRat
     }
 
     @Override
-    public void save(DeforestationRatesDTO deforestationRatesDTO) {
-        DeforestationRatesEntity deforestationRatesEntity = deforestationRatesDTOAndEntityConverter.convertToEntity(deforestationRatesDTO);
+    public String save(DeforestationRatesDTO deforestationRatesDTO) {
+        DeforestationRatesEntity deforestationRatesEntity = DeforestationRatesDTOAndEntityConverter.convertToEntity(deforestationRatesDTO);
         deforestationRatesRepository.save(deforestationRatesEntity);
+        return "Success";
     }
 }
