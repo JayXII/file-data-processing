@@ -10,8 +10,7 @@ import com.enviro.assessment.grad001.johnmootsi.entities.DeforestationRatesEntit
 import com.enviro.assessment.grad001.johnmootsi.entities.LandUseEntity;
 import com.enviro.assessment.grad001.johnmootsi.entities.WaterQualityEntity;
 import com.enviro.assessment.grad001.johnmootsi.repository.*;
-import com.enviro.assessment.grad001.johnmootsi.services.EnvironmentalDataService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.enviro.assessment.grad001.johnmootsi.services.FileUploadService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,17 +19,19 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 @Service
-public class EnvironmentalDataServiceImplementation implements EnvironmentalDataService {
+public class FileUploadServiceImplementation implements FileUploadService {
 
-    @Autowired
-    private AirQualityRepository airQualityRepository;
-    @Autowired
-    private DeforestationRatesRepository deforestationRatesRepository;
-    @Autowired
-    private LandUseRepository landUseRepository;
-    @Autowired
-    private WaterQualityRepository waterQualityRepository;
+    private final AirQualityRepository airQualityRepository;
+    private final DeforestationRatesRepository deforestationRatesRepository;
+    private final LandUseRepository landUseRepository;
+    private final WaterQualityRepository waterQualityRepository;
 
+    public FileUploadServiceImplementation(AirQualityRepository airQualityRepository, DeforestationRatesRepository deforestationRatesRepository, LandUseRepository landUseRepository, WaterQualityRepository waterQualityRepository) {
+        this.airQualityRepository = airQualityRepository;
+        this.deforestationRatesRepository = deforestationRatesRepository;
+        this.landUseRepository = landUseRepository;
+        this.waterQualityRepository = waterQualityRepository;
+    }
 
     @Override
     public String upload(MultipartFile file){
