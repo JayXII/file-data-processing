@@ -15,39 +15,6 @@ servers:
     description: Local server (default)
 
 paths:
-  /api/v1/hello:
-    get:
-      summary: Test endpoint to greet the world
-      operationId: helloWorld
-      responses:
-        '200':
-          description: A greeting message
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: Oh hai, world!
-
-  /api/v1/hello/{name}:
-    get:
-      summary: Test endpoint to greet a specific person
-      operationId: helloName
-      parameters:
-        - name: name
-          in: path
-          required: true
-          schema:
-            type: string
-          description: The name of the person to greet
-      responses:
-        '200':
-          description: A greeting message with the provided name
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: Oh hai, John!
-
   /api/v1/upload:
     post:
       summary: Upload a file for environmental data processing
@@ -71,7 +38,7 @@ paths:
                 type: string
                 example: "message: File uploaded successfully!"
 
-  /api/v1/results/deforestation/{id}:
+  /api/v1/deforestation-rates/results/{id}:
     get:
       summary: Get deforestation rates by ID
       operationId: getDeforestationRatesById
@@ -91,7 +58,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeforestationRatesDTO'
 
-  /api/v1/results/deforestation/name/{name}:
+  /api/v1/deforestation-rates/results/name/{name}:
     get:
       summary: Get deforestation rates by name
       operationId: getDeforestationRatesByName
@@ -112,7 +79,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/DeforestationRatesDTO'
 
-  /api/v1/results/deforestation:
+  /api/v1/deforestation-rates/results:
     get:
       summary: Get all deforestation rates
       operationId: getAllDeforestationRates
@@ -126,7 +93,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/DeforestationRatesDTO'
 
-  /api/v1/results/land/{id}:
+  /api/v1/land-use/results/{id}:
     get:
       summary: Get land use data by ID
       operationId: getLandUseById
@@ -146,7 +113,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/LandUseDTO'
 
-  /api/v1/results/land/name/{name}:
+  /api/v1/land-use/results/name/{name}:
     get:
       summary: Get land use data by name
       operationId: getLandUseByName
@@ -167,7 +134,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/LandUseDTO'
 
-  /api/v1/results/land:
+  /api/v1/land-use/results:
     get:
       summary: Get all land use data
       operationId: getAllLandUse
@@ -181,7 +148,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/LandUseDTO'
 
-  /api/v1/results/water/{id}:
+  /api/v1/water-quality/results/{id}:
     get:
       summary: Get water quality data by ID
       operationId: getWaterQualityById
@@ -201,7 +168,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/WaterQualityDTO'
 
-  /api/v1/results/water/name/{name}:
+  /api/v1/water-quality/results/name/{name}:
     get:
       summary: Get water quality data by name
       operationId: getWaterQualityByName
@@ -222,7 +189,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/WaterQualityDTO'
 
-  /api/v1/results/water:
+  /api/v1/water-quality/results:
     get:
       summary: Get all water quality data
       operationId: getAllWaterQuality
@@ -236,7 +203,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/WaterQualityDTO'
 
-  /api/v1/results/air/{id}:
+  /api/v1/air-quality/results/{id}:
     get:
       summary: Get air quality data by ID
       operationId: getAirQualityById
@@ -256,7 +223,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/AirQualityDTO'
 
-  /api/v1/results/air/name/{name}:
+  /api/v1/air-quality/results/name/{name}:
     get:
       summary: Get air quality data by name
       operationId: getAirQualityByName
@@ -277,7 +244,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/AirQualityDTO'
 
-  /api/v1/results/air:
+  /api/v1/air-quality/results:
     get:
       summary: Get all air quality data
       operationId: getAllAirQuality
