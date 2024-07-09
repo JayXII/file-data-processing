@@ -1,4 +1,4 @@
-package com.enviro.assessment.grad001.johnmootsi.handlers;
+package com.enviro.assessment.grad001.johnmootsi.utility.handlers;
 
 import lombok.Getter;
 import lombok.Setter;

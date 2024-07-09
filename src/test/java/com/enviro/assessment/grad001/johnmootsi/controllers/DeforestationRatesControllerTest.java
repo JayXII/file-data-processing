@@ -48,19 +48,19 @@ class DeforestationRatesControllerTest {
     }
 
     @Test
-    void getDeforestationRatesResultsById() throws Exception {
+    void TestGetDeforestationRatesResultsById() throws Exception {
         when(deforestationRatesService.findDeforestationRatesById(1L)).thenReturn(deforestationRatesDTO1);
         this.mockMvc.perform(get("/api/v1/deforestation-rates/results/1")).andDo(print()).andExpect(status().isOk());
     }
 
     @Test
-    void getDeforestationRatesResultsByName() throws Exception {
+    void TestGetDeforestationRatesResultsByName() throws Exception {
         when(deforestationRatesService.findDeforestationRatesByName("land")).thenReturn(deforestationRatesDTOS);
         this.mockMvc.perform(get("/api/v1/deforestation-rates/results/name/land")).andDo(print()).andExpect(status().isOk());
     }
 
     @Test
-    void getDeforestationRatesResults() throws Exception {
+    void TestGetDeforestationRatesResults() throws Exception {
         when(deforestationRatesService.findAllDeforestationRates()).thenReturn(deforestationRatesDTOS);
         this.mockMvc.perform(get("/api/v1/deforestation-rates/results")).andDo(print()).andExpect(status().isOk());
     }
