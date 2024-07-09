@@ -1,6 +1,6 @@
 package com.enviro.assessment.grad001.johnmootsi.controllers;
 
-import com.enviro.assessment.grad001.johnmootsi.handlers.ProcessFileResponseHandler;
+import com.enviro.assessment.grad001.johnmootsi.utility.handlers.ProcessFileResponseHandler;
 import com.enviro.assessment.grad001.johnmootsi.services.*;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
